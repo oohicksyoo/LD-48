@@ -20,6 +20,12 @@ namespace Assets.Project.Code.Gameplay {
 		[SerializeField]
 		private UIAnimator uiAnimator;
 
+		[SerializeField]
+		private RopeAnimator ropeAnimator;
+
+		[SerializeField]
+		private LightActivator lightActivator;
+
 		#endregion
 		
 		
@@ -78,6 +84,8 @@ namespace Assets.Project.Code.Gameplay {
 				case GameState.None:
 					break;
 				case GameState.Shop:
+					ropeAnimator.ResetRope();
+					lightActivator.ResetLight();
 					playerSub.position = spawnPoint.position;
 					playerSub.GetComponent<BubbleSpawner>().enabled = false;
 					playerSub.GetComponent<PlayerController>().enabled = false;
@@ -87,6 +95,7 @@ namespace Assets.Project.Code.Gameplay {
 					break;
 				case GameState.Transition:
 					uiAnimator.RunAnimationOut();
+					ropeAnimator.RunRopeAnimation();
 					break;
 				case GameState.Game:
 					playerSub.GetComponent<BubbleSpawner>().enabled = true;
