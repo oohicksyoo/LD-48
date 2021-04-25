@@ -59,7 +59,8 @@ namespace Assets.Project.Code.Gameplay {
 
 		public void Update() {
 			this.BubbleSpawnTime += Time.deltaTime;
-			if (this.BubbleSpawnTime >= bubbleSpawnTime) {
+			float targetTime = bubbleSpawnTime - Mathf.Abs(playerController.Vertical);
+			if (this.BubbleSpawnTime >= targetTime) {
 				this.BubbleSpawnTime = 0;
 				SpawnBubble();
 			}

@@ -16,8 +16,11 @@ namespace Assets.Project.Code.Gameplay {
 
 
 		#region Properties
-		
-		
+
+		public float Vertical {
+			get;
+			private set;
+		}
 
 		#endregion
 		
@@ -28,6 +31,7 @@ namespace Assets.Project.Code.Gameplay {
 			float horizontal = Input.GetAxis("Horizontal");
 			float vertical = Input.GetAxis("Vertical");
 			vertical = Mathf.Clamp(vertical, -1, 0);
+			this.Vertical = vertical;
 			
 			Debug.Log($"{vertical} : {horizontal}");
 

@@ -14,8 +14,11 @@
               <e p="BubbleSpawner.cs" t="Include" />
               <e p="CurveHandler.cs" t="Include" />
               <e p="Follower.cs" t="Include" />
+              <e p="GameManager.cs" t="Include" />
+              <e p="GameState.cs" t="Include" />
               <e p="Moveable.cs" t="Include" />
               <e p="PlayerController.cs" t="Include" />
+              <e p="UIAnimator.cs" t="Include" />
             </e>
           </e>
         </e>
