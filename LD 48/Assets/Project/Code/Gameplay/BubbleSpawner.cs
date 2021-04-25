@@ -14,7 +14,13 @@ namespace Assets.Project.Code.Gameplay {
 		private Transform bubbleContainer;
 
 		[SerializeField]
-		private Transform bubbleSpawnLocation;
+		private Transform bubbleSpawnLocationLeft;
+		
+		[SerializeField]
+		private Transform bubbleSpawnLocationRight;
+
+		[SerializeField]
+		private PlayerController playerController;
 
 		[SerializeField]
 		private float bubbleSpawnTime;
@@ -65,7 +71,8 @@ namespace Assets.Project.Code.Gameplay {
 		#region Private Functions
 
 		private void SpawnBubble() {
-			GameObject go = Instantiate(bubblePrefab, bubbleSpawnLocation.position, Quaternion.identity, bubbleContainer);
+			Vector3 spawn = playerController.IsFacingRight ? bubbleSpawnLocationLeft.position : bubbleSpawnLocationRight.position;
+			GameObject go = Instantiate(bubblePrefab, spawn, Quaternion.identity, bubbleContainer);
 			Bubble bubble = go.GetComponent<Bubble>();
 			bubble.OnCompleteAction = () => {
 				//TODO: SpawnBubble
