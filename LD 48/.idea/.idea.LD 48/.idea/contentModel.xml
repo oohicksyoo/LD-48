@@ -26,6 +26,8 @@
             </e>
             <e p="Utility" t="Include">
               <e p="Marker.cs" t="Include" />
+              <e p="PlayerPrefHelper.cs" t="Include" />
+              <e p="SortOrder.cs" t="Include" />
             </e>
           </e>
         </e>

@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Assets.Project.Code.Utility;
+using TMPro;
+using UnityEngine;
 
 namespace Assets.Project.Code.Gameplay {
 	public class GameManager : MonoBehaviour {
@@ -29,6 +31,9 @@ namespace Assets.Project.Code.Gameplay {
 		[SerializeField]
 		private LightActivator lightActivator;
 
+		[SerializeField]
+		private TextMeshPro furthestDepthText;
+
 		[Header("Gameplay")]
 		[SerializeField]
 		private float distanceMultiplier = 1;
@@ -43,10 +48,19 @@ namespace Assets.Project.Code.Gameplay {
 			private set;
 		} = GameState.None;
 
+		public float Depth {
+			get;
+			private set;
+		}
+
 		#endregion
 
 
 		#region MonoBehaviour
+
+		public void Start() {
+			CheckDepth();
+		}
 
 		public void Update() {
 			StateUpdate();
@@ -100,6 +114,7 @@ namespace Assets.Project.Code.Gameplay {
 					playerSub.GetComponent<PlayerController>().enabled = false;
 					followerComponent.transform.position = Vector3.zero;
 					followerComponent.enabled = false;
+					this.Depth = 0;
 					uiAnimator.RunAnimationIn();
 					break;
 				case GameState.Transition:
@@ -116,6 +131,7 @@ namespace Assets.Project.Code.Gameplay {
 					ropeAnimator.RunRopePullUpAnimation();
 					break;
 				case GameState.Dead:
+					CheckDepth();
 					SwitchState(GameState.Shop);
 					break;
 			}
@@ -123,7 +139,19 @@ namespace Assets.Project.Code.Gameplay {
 
 		private void CalculateDistance() {
 			float d = Mathf.Abs(playerSub.position.y - waterLine.position.y);
+			this.Depth = d * distanceMultiplier;
 			Debug.Log($"Distance: {d} = {d * distanceMultiplier}");
+		}
+
+		private void CheckDepth() {
+			float v = PlayerPrefHelper.LoadFloat(PlayerPrefHelper.FURTHEST_DEPTH);
+			float highest = v > this.Depth ? v : this.Depth;
+			PlayerPrefHelper.SaveFloat(PlayerPrefHelper.FURTHEST_DEPTH, (int)highest);
+			SetFurthestTextBoard((int)highest);
+		}
+
+		private void SetFurthestTextBoard(int v) {
+			furthestDepthText.text = $"{v:000000000}";
 		}
 
 		#endregion
