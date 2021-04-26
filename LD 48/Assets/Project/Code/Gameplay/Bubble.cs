@@ -48,6 +48,11 @@ namespace Assets.Project.Code.Gameplay {
 			set;
 		}
 
+		public float StartingPhase {
+			get;
+			set;
+		}
+
 		private float Phase {
 			get {
 				return phase;
@@ -73,7 +78,7 @@ namespace Assets.Project.Code.Gameplay {
 		#region MonoBehaviour
 
 		public void Start() {
-			this.Phase = 0.5f;
+			this.Phase = this.StartingPhase;
 			transform.localScale = Vector3.zero;
 		}
 

@@ -75,6 +75,7 @@ namespace Assets.Project.Code.Gameplay {
 			Vector3 spawn = playerController.IsFacingRight ? bubbleSpawnLocationLeft.position : bubbleSpawnLocationRight.position;
 			GameObject go = Instantiate(bubblePrefab, spawn, Quaternion.identity, bubbleContainer);
 			Bubble bubble = go.GetComponent<Bubble>();
+			bubble.StartingPhase = playerController.IsFacingRight ? 0.5f : 0.0f;
 			bubble.OnCompleteAction = () => {
 				//TODO: SpawnBubble
 			};
