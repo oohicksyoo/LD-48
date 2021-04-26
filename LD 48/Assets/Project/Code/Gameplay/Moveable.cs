@@ -29,7 +29,7 @@ namespace Assets.Project.Code.Gameplay {
 
 		#region Protected Functions
 
-		protected void Flip() {
+		protected virtual void Flip() {
 			this.IsFacingRight = !this.IsFacingRight;
 			spriteRenderer.flipX = !this.IsFacingRight;
 		}

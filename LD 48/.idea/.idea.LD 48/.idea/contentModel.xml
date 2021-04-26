@@ -13,6 +13,7 @@
               <e p="Bubble.cs" t="Include" />
               <e p="BubbleSpawner.cs" t="Include" />
               <e p="CurveHandler.cs" t="Include" />
+              <e p="FishController.cs" t="Include" />
               <e p="Follower.cs" t="Include" />
               <e p="GameManager.cs" t="Include" />
               <e p="GameState.cs" t="Include" />

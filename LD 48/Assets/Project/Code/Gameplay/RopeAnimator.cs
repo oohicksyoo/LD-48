@@ -33,11 +33,17 @@ namespace Assets.Project.Code.Gameplay {
 		#region Public Functions
 
 		public void ResetRope() {
+			StopAllCoroutines();
 			ropeMaterial.SetFloat("_Visibility", start);
 		}
 
 		public void RunRopeAnimation() {
 			StartCoroutine(OnRunRopeAnimation());
+		}
+
+		public void RunRopePullUpAnimation() {
+			StopAllCoroutines();
+			StartCoroutine(OnRunRopePullUpAnimation());
 		}
 
 		#endregion
@@ -53,6 +59,16 @@ namespace Assets.Project.Code.Gameplay {
 				yield return null;
 			}
 			ropeMaterial.SetFloat("_Visibility", end);
+		}
+		
+		private IEnumerator OnRunRopePullUpAnimation() {
+			ropeMaterial.SetFloat("_Visibility", end);
+			for (float i = 0; i < 4; i += Time.deltaTime) {
+				float t = Mathf.Lerp(end, start, i / 4);
+				ropeMaterial.SetFloat("_Visibility", t);
+				yield return null;
+			}
+			ropeMaterial.SetFloat("_Visibility", start);
 		}
 
 		#endregion

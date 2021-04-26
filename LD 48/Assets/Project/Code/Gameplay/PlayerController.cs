@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Assets.Project.Code.Gameplay {
 	public class PlayerController : Moveable {
@@ -12,6 +13,9 @@ namespace Assets.Project.Code.Gameplay {
 		[SerializeField]
 		private float tiltSpeed;
 
+		[SerializeField]
+		private CircleCollider2D collider2D;
+
 		#endregion
 
 
@@ -20,6 +24,11 @@ namespace Assets.Project.Code.Gameplay {
 		public float Vertical {
 			get;
 			private set;
+		}
+
+		public Action OnDeath {
+			get;
+			set;
 		}
 
 		#endregion
@@ -32,8 +41,11 @@ namespace Assets.Project.Code.Gameplay {
 			float vertical = Input.GetAxis("Vertical");
 			vertical = Mathf.Clamp(vertical, -1, 0);
 			this.Vertical = vertical;
-			
-			Debug.Log($"{vertical} : {horizontal}");
+
+			//Dont allow just down only angled down
+			if (Mathf.Abs(horizontal) <= 0.1f) {
+				vertical = 0;
+			}
 
 			//Slow down the diagonal movement
 			if (vertical < 0 && horizontal != 0) {
@@ -53,7 +65,6 @@ namespace Assets.Project.Code.Gameplay {
 				}
 			} else {
 				//Tilt back towards 0
-				Debug.Log($"Tilt Up");
 				if (this.IsFacingRight) {
 					float angle = transform.rotation.eulerAngles.z;
 					transform.rotation = Quaternion.Euler(0, 0, angle + 1 * tiltSpeed * Time.deltaTime);
@@ -82,6 +93,22 @@ namespace Assets.Project.Code.Gameplay {
 			
 			transform.position += new Vector3(this.Velocity.x, this.Velocity.y, 0);
 			this.Velocity *= 0.9f;
+		}
+
+		public void OnCollisionEnter2D(Collision2D collision2D) {
+			Debug.Log($"Collided");
+			this.Velocity = Vector2.zero;
+			this.OnDeath();
+		}
+
+		#endregion
+
+
+		#region Protected Overrides
+
+		protected override void Flip() {
+			base.Flip();
+			collider2D.offset *= new Vector2(-1, 1);
 		}
 
 		#endregion

@@ -38,6 +38,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _EnableExternalAlpha: 0
+    - _MovementSpeed: 0.48
     - _Visibility: 0.25
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

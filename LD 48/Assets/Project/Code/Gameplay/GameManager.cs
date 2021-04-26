@@ -87,6 +87,7 @@ namespace Assets.Project.Code.Gameplay {
 					ropeAnimator.ResetRope();
 					lightActivator.ResetLight();
 					playerSub.position = spawnPoint.position;
+					playerSub.rotation = Quaternion.Euler(0,0,0);
 					playerSub.GetComponent<BubbleSpawner>().enabled = false;
 					playerSub.GetComponent<PlayerController>().enabled = false;
 					followerComponent.transform.position = Vector3.zero;
@@ -100,9 +101,14 @@ namespace Assets.Project.Code.Gameplay {
 				case GameState.Game:
 					playerSub.GetComponent<BubbleSpawner>().enabled = true;
 					playerSub.GetComponent<PlayerController>().enabled = true;
+					playerSub.GetComponent<PlayerController>().OnDeath = () => {
+						SwitchState(GameState.Dead);
+					};
 					followerComponent.enabled = true;
+					ropeAnimator.RunRopePullUpAnimation();
 					break;
 				case GameState.Dead:
+					SwitchState(GameState.Shop);
 					break;
 			}
 		}
