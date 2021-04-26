@@ -21,6 +21,7 @@
               <e p="Moveable.cs" t="Include" />
               <e p="PlayerController.cs" t="Include" />
               <e p="RopeAnimator.cs" t="Include" />
+              <e p="TrackCreator.cs" t="Include" />
               <e p="UIAnimator.cs" t="Include" />
             </e>
             <e p="Utility" t="Include">

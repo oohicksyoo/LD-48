@@ -15,6 +15,9 @@ namespace Assets.Project.Code.Gameplay {
 		private Transform releasePoint;
 
 		[SerializeField]
+		private Transform waterLine;
+
+		[SerializeField]
 		private Follower followerComponent;
 
 		[SerializeField]
@@ -25,6 +28,10 @@ namespace Assets.Project.Code.Gameplay {
 
 		[SerializeField]
 		private LightActivator lightActivator;
+
+		[Header("Gameplay")]
+		[SerializeField]
+		private float distanceMultiplier = 1;
 
 		#endregion
 		
@@ -67,6 +74,7 @@ namespace Assets.Project.Code.Gameplay {
 					}
 					break;
 				case GameState.Game:
+					CalculateDistance();
 					break;
 				case GameState.Dead:
 					break;
@@ -111,6 +119,11 @@ namespace Assets.Project.Code.Gameplay {
 					SwitchState(GameState.Shop);
 					break;
 			}
+		}
+
+		private void CalculateDistance() {
+			float d = Mathf.Abs(playerSub.position.y - waterLine.position.y);
+			Debug.Log($"Distance: {d} = {d * distanceMultiplier}");
 		}
 
 		#endregion

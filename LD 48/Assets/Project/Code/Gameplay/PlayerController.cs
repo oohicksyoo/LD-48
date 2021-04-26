@@ -36,7 +36,7 @@ namespace Assets.Project.Code.Gameplay {
 		
 		#region MonoBehaviour
 
-		public void Update() {
+		public override void Update() {
 			float horizontal = Input.GetAxis("Horizontal");
 			float vertical = Input.GetAxis("Vertical");
 			vertical = Mathf.Clamp(vertical, -1, 0);
@@ -91,8 +91,8 @@ namespace Assets.Project.Code.Gameplay {
 				}
 			}
 			
-			transform.position += new Vector3(this.Velocity.x, this.Velocity.y, 0);
-			this.Velocity *= 0.9f;
+			
+			base.Update();
 		}
 
 		public void OnCollisionEnter2D(Collision2D collision2D) {

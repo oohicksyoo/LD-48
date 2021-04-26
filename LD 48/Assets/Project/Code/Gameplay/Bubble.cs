@@ -58,10 +58,6 @@ namespace Assets.Project.Code.Gameplay {
 				return phase;
 			}
 			set {
-				if (value > 1) {
-					//Did one cycle
-				}
-
 				value %= 1;
 				phase = value;
 			}

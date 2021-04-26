@@ -18,6 +18,9 @@ namespace Assets.Project.Code.Gameplay {
 		[SerializeField]
 		private float animationLength;
 
+		[SerializeField]
+		private Transform cog;
+
 		#endregion
 
 
@@ -35,6 +38,7 @@ namespace Assets.Project.Code.Gameplay {
 		public void ResetRope() {
 			StopAllCoroutines();
 			ropeMaterial.SetFloat("_Visibility", start);
+			cog.rotation = Quaternion.Euler(0,0,0);
 		}
 
 		public void RunRopeAnimation() {
@@ -56,6 +60,7 @@ namespace Assets.Project.Code.Gameplay {
 			for (float i = 0; i < animationLength; i += Time.deltaTime) {
 				float t = Mathf.Lerp(start, end, i / animationLength);
 				ropeMaterial.SetFloat("_Visibility", t);
+				cog.rotation = Quaternion.Euler(0,0,cog.rotation.eulerAngles.z + 30 * Time.deltaTime);
 				yield return null;
 			}
 			ropeMaterial.SetFloat("_Visibility", end);
@@ -66,6 +71,11 @@ namespace Assets.Project.Code.Gameplay {
 			for (float i = 0; i < 4; i += Time.deltaTime) {
 				float t = Mathf.Lerp(end, start, i / 4);
 				ropeMaterial.SetFloat("_Visibility", t);
+
+				if (i / 4 > 0.4f) {
+					cog.rotation = Quaternion.Euler(0, 0, cog.rotation.eulerAngles.z - 30 * Time.deltaTime);
+				}
+
 				yield return null;
 			}
 			ropeMaterial.SetFloat("_Visibility", start);

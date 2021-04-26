@@ -29,6 +29,11 @@ namespace Assets.Project.Code.Gameplay {
 
 		#region Protected Functions
 
+		public virtual void Update() {
+			transform.position += new Vector3(this.Velocity.x, this.Velocity.y, 0);
+			this.Velocity *= 0.9f;
+		}
+
 		protected virtual void Flip() {
 			this.IsFacingRight = !this.IsFacingRight;
 			spriteRenderer.flipX = !this.IsFacingRight;
