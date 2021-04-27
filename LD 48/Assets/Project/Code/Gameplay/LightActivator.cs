@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Assets.Project.Code.Audio;
+using Assets.Project.Code.Utility;
+using UnityEngine;
 
 namespace Assets.Project.Code.Gameplay {
 	public class LightActivator : MonoBehaviour {
@@ -31,7 +33,9 @@ namespace Assets.Project.Code.Gameplay {
 		}
 
 		public void Update() {
-			if (!this.IsActivated && transform.position.y <= lightActivatorPosition.position.y) {
+			bool hasLightUpgrade = PlayerPrefHelper.LoadBool(PlayerPrefHelper.UPGRADE_LIGHT);
+			if (!this.IsActivated && hasLightUpgrade && transform.position.y <= lightActivatorPosition.position.y) {
+				AudioManager.Instance.PlaySFX(SFXList.LightClick);
 				this.IsActivated = true;
 				light.SetActive(true);
 			}

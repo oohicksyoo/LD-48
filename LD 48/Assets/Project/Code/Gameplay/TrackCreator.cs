@@ -40,10 +40,19 @@ namespace Assets.Project.Code.Gameplay {
 			}
 		}
 
+		private Vector3 StartPosition {
+			get;
+			set;
+		}
+
 		#endregion
 		
 		
 		#region MonoBehaviour
+
+		public void Start() {
+			this.StartPosition = trackMiddle.position;
+		}
 
 		public void Update() {
 			//Check if player y pos if < trackMiddle
@@ -57,6 +66,18 @@ namespace Assets.Project.Code.Gameplay {
 				if (this.TrackPieces.Count > 2) {
 					DestroyImmediate(this.trackPieces.Dequeue());
 				}
+			}
+		}
+
+		#endregion
+
+
+		#region Public Functions
+
+		public void ResetTrackCreator() {
+			trackMiddle.position = this.StartPosition;
+			while (this.TrackPieces.Count > 0) {
+				Destroy(this.trackPieces.Dequeue());
 			}
 		}
 

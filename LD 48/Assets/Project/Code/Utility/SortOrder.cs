@@ -9,6 +9,9 @@ namespace Assets.Project.Code.Utility {
 		private MeshRenderer meshRenderer;
 
 		[SerializeField]
+		private string layer = "Default";
+
+		[SerializeField]
 		private int order;
 		
 		#endregion
@@ -17,6 +20,7 @@ namespace Assets.Project.Code.Utility {
 		#region MonoBehaviour
 
 		public void Awake() {
+			meshRenderer.sortingLayerName = layer;
 			meshRenderer.sortingOrder = order;
 		}
 

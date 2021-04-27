@@ -9,6 +9,11 @@
       <e p="Assets" t="Include">
         <e p="Project" t="Include">
           <e p="Code" t="Include">
+            <e p="Audio" t="Include">
+              <e p="AudioManager.cs" t="Include" />
+              <e p="SFXEntry.cs" t="Include" />
+              <e p="SFXList.cs" t="Include" />
+            </e>
             <e p="Gameplay" t="Include">
               <e p="Bubble.cs" t="Include" />
               <e p="BubbleSpawner.cs" t="Include" />
@@ -17,12 +22,17 @@
               <e p="Follower.cs" t="Include" />
               <e p="GameManager.cs" t="Include" />
               <e p="GameState.cs" t="Include" />
+              <e p="InstructionUI.cs" t="Include" />
               <e p="LightActivator.cs" t="Include" />
+              <e p="Monster.cs" t="Include" />
               <e p="Moveable.cs" t="Include" />
+              <e p="PearlCollectible.cs" t="Include" />
               <e p="PlayerController.cs" t="Include" />
+              <e p="RadarAlertActivator.cs" t="Include" />
               <e p="RopeAnimator.cs" t="Include" />
               <e p="TrackCreator.cs" t="Include" />
               <e p="UIAnimator.cs" t="Include" />
+              <e p="UIGameplay.cs" t="Include" />
             </e>
             <e p="Utility" t="Include">
               <e p="Marker.cs" t="Include" />
