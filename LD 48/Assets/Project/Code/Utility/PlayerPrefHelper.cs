@@ -36,10 +36,12 @@ namespace Assets.Project.Code.Utility {
 			return PlayerPrefs.GetInt(name, value);
 		}
 
-		[MenuItem("LD48/Clear Playerprefs")]
-		public static void ClearAll() {
-			PlayerPrefs.DeleteAll();
-		}
+		#if UNITY_EDITOR
+			[MenuItem("LD48/Clear Playerprefs")]
+			public static void ClearAll() {
+				PlayerPrefs.DeleteAll();
+			}
+		#endif
 
 	}
 }

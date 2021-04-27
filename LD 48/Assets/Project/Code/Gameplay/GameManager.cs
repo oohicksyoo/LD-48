@@ -121,7 +121,6 @@ namespace Assets.Project.Code.Gameplay {
 
 		public void Start() {
 			this.PearlCount = PlayerPrefHelper.LoadInt(PlayerPrefHelper.PEARL_COUNT);
-			this.PearlCount = 100;
 			this.OxygenAmount = PlayerPrefHelper.LoadFloat(PlayerPrefHelper.OXYGEN_AMOUNT, 30);
 			CheckDepth();
 		}
