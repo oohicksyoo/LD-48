@@ -45,7 +45,9 @@ namespace Assets.Project.Code.Gameplay {
 				SetAllToAlpha(c);
 				yield return null;
 			}
-			
+
+			c.a = 1;
+			SetAllToAlpha(c);
 		}
 		
 		private IEnumerator OnRunAnimationOut() {
@@ -55,6 +57,9 @@ namespace Assets.Project.Code.Gameplay {
 				SetAllToAlpha(c);
 				yield return null;
 			}
+			
+			c.a = 0;
+			SetAllToAlpha(c);
 		}
 
 		private void SetAllToAlpha(Color c) {

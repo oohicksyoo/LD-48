@@ -48,6 +48,7 @@ namespace Assets.Project.Code.Gameplay {
 
 		public void ResetLight() {
 			light.SetActive(false);
+			this.IsActivated = false;
 		}
 
 		#endregion

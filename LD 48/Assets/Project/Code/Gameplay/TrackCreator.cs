@@ -59,7 +59,7 @@ namespace Assets.Project.Code.Gameplay {
 			//If < then move track middle down by offset and generate a new piece
 			if (player.position.y < trackMiddle.position.y) {
 				trackMiddle.position -= new Vector3(0, trackOffset, 0);
-				GameObject go = Instantiate(trackPrefabs[0], trackMiddle.position, Quaternion.identity, container);
+				GameObject go = Instantiate(trackPrefabs[Random.Range(0, trackPrefabs.Count - 1)], trackMiddle.position, Quaternion.identity, container);
 				this.TrackPieces.Enqueue(go);
 				
 				//Cleanup old track pieces off screen
